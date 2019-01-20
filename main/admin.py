@@ -1,6 +1,6 @@
-# from django.contrib import admin
-# from mysite.main.models import *
-#
-# admin.register(Volunteer)
-# admin.register(Skill)
-# admin.register(Project)
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+
+from main.models import User
+
+admin.site.register(User, UserAdmin)
