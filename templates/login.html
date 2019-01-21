@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">login</button>
+    </form>
+    <a style="float: right" href="{% url 'charity_signup' %}">charity signup</a>
+    <br/>
+    <a style="float: right" href="{% url 'volunteer_signup' %}">volunteer signup</a>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    Hello {{ user.get_full_name|default:user.username }}!
+    <br/>
+    You are a {{ user.get_user_type_display }}!
+    <a style="float: right" href="{% url 'logout' %}">logout</a>
+{% endblock %}

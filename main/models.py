@@ -1,22 +1,7 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.deletion import SET_NULL, CASCADE
 from django.utils import timezone
-
-
-class User(models.Model):
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        abstract = True
-
-
-class Admin(models.Model):
-    name = models.CharField(max_length=255)
-
-
-class Charity(User):
-    approved_by = models.ForeignKey(Admin, on_delete=SET_NULL, null=True, blank=True)
-
 
 BEGINNER = 1
 INTERMEDIATE = 2
@@ -28,8 +13,26 @@ LEVEL_CHOICES = (
 )
 
 
-class Volunteer(User):
-    level = models.SmallIntegerField(choices=LEVEL_CHOICES, default=BEGINNER)
+class User(AbstractUser):
+    ADMIN = 1
+    CHARITY = 2
+    VOLUNTEER = 3
+    USER_TYPES = (
+        (ADMIN, 'admin'),
+        (CHARITY, 'charity'),
+        (VOLUNTEER, 'volunteer'),
+    )
+    user_type = models.PositiveSmallIntegerField(choices=USER_TYPES, default=ADMIN)
+
+
+class Charity(models.Model):
+    user = models.OneToOneField(User, on_delete=CASCADE)
+    approved_by = models.ForeignKey(User, on_delete=SET_NULL, null=True, blank=True, related_name='charities_approved')
+
+
+class Volunteer(models.Model):
+    user = models.OneToOneField(User, on_delete=CASCADE)
+    level = models.PositiveSmallIntegerField(choices=LEVEL_CHOICES, default=BEGINNER)
     skills = models.ManyToManyField('Skill', through='VolunteerHasSkill')
 
 
@@ -38,7 +41,7 @@ class Project(models.Model):
     start_time = models.DateTimeField(default=timezone.now)
     end_time = models.DateTimeField()
     created_by = models.ForeignKey(Charity, on_delete=SET_NULL, null=True, blank=True)
-    approved_by = models.ForeignKey(Admin, on_delete=SET_NULL, null=True, blank=True)
+    approved_by = models.ForeignKey(User, on_delete=SET_NULL, null=True, blank=True, related_name='projects_approved')
     paid_by = models.ManyToManyField(Volunteer, through='Payment')
 
 
@@ -63,19 +66,19 @@ class Skill(models.Model):
 
 
 class VolunteerHasSkill(models.Model):
-    level = models.SmallIntegerField(choices=LEVEL_CHOICES, default=BEGINNER)
+    level = models.PositiveSmallIntegerField(choices=LEVEL_CHOICES, default=BEGINNER)
     skill = models.ForeignKey(Skill, on_delete=CASCADE)
     volunteer = models.ForeignKey(Volunteer, on_delete=CASCADE)
 
 
 class OpportunityNeedsSkill(models.Model):
-    level = models.SmallIntegerField(choices=LEVEL_CHOICES, default=BEGINNER)
+    level = models.PositiveSmallIntegerField(choices=LEVEL_CHOICES, default=BEGINNER)
     skill = models.ForeignKey(Skill, on_delete=CASCADE)
     opportunity = models.ForeignKey(Opportunity, on_delete=CASCADE)
 
 
 class Rating(models.Model):
-    grade = models.SmallIntegerField()
+    grade = models.PositiveSmallIntegerField()
     opportunity = models.ForeignKey(Opportunity, on_delete=CASCADE)
     charity = models.ForeignKey(Charity, on_delete=CASCADE)
     project = models.ForeignKey(Project, on_delete=CASCADE)
