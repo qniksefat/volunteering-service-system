@@ -125,9 +125,8 @@ new jBox('Tooltip', {
 
 new jBox('Modal', {
   attach: '#Modal-1',
-  height: 200,
-  title: 'I\'m a basic jBox modal window',
-  content: '<div style="line-height: 30px;">Try to scroll ...it\'s blocked.<br>Press [ESC] or click anywhere to close.</div>'
+  title: 'Skill Submited.',
+  content: ''
 });
 
 
