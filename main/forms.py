@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UsernameField, UserCreationForm
 
-from main.models import User, Charity, LEVEL_CHOICES, Volunteer, Project, Payment
+from main.models import User, Charity, LEVEL_CHOICES, Volunteer, Project, Payment, Skill
 
 
 class CharityCreationForm(UserCreationForm):
@@ -71,3 +71,18 @@ class PaymentCreationForm(forms.ModelForm):
         if commit:
             payment.save()
         return payment
+
+
+class SkillCreationForm(forms.ModelForm):
+    level = forms.ChoiceField(choices=LEVEL_CHOICES)
+
+    class Meta:
+        model = Skill
+        fields = ('title', 'level',)
+
+    def _post_clean(self):
+        try:
+            self.instance = Skill.objects.get(title=self.cleaned_data['title'])
+        except Skill.DoesNotExist:
+            pass
+        super()._post_clean()
