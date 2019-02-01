@@ -8,6 +8,11 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
 
+    <!-- Popup jBox css -->
+    <link rel="stylesheet" href="dist/jBox.all.css">
+    <script src="jBox_link.js"></script>
+     <!-- Table.css -->
+	<link rel="stylesheet" href="css/Table.css">
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -74,6 +79,81 @@
 		</div>
 	</nav>
 
+    <div id="fh5co-counter" class="fh5co-bg-section">
+        <div class="fh5co-heading text-center">
+            <h2>Inbox</h2>
+        </div>
+        <div class="container">
+            <table id="myTable">
+                <tr class="header">
+                    <th style="width:7%;">Seen</th>
+                    <th style="width:17%;">Subject</th>
+                    <th style="width:23%;">From</th>
+                    <th style="width:50%;">Context</th>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><label><input type="checkbox"></label></td>
+                    <td>Project Request</td>
+                    <td>Sum.Yungai@gmail.com</td>
+                    <td>Dear User, We would like you to join or project on ...</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><label><input type="checkbox" checked></label></td>
+                    <td>Hello d Request</td>
+                    <td>Donald.Trump@gmail.com</td>
+                    <td>Dear User, We would like you to join or project on ...</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><label><input type="checkbox" checked></label></td>
+                    <td>Suicide Request</td>
+                    <td>Aids.Official@gmail.com</td>
+                    <td>Dear User, We would like you to join or project on ...</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center;"><label><input type="checkbox" checked></label></td>
+                    <td>Project Request</td>
+                    <td>Sum.Yungai@gmail.com</td>
+                    <td>Dear User, We would like you to join or project on ...</td>
+                </tr>
+
+            </table>
+            <br>
+        </div>
+    </div>  <!-- Inbox -->
+
+
+    <div class="choose animate-box fadeInUp animated-fast">
+        <div class="container">
+            <h1><br>Send Mail</h1>
+            <form action="#">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <!-- <label for="email">Email</label> -->
+                        <input type="text" id="email" class="form-control" placeholder="send to">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <!-- <label for="subject">Subject</label> -->
+                        <input type="text" id="input_subject" class="form-control" placeholder="subject">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <!-- <label for="message">Message</label> -->
+                        <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="message body"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="button" value="Send Message" class="btn btn-primary" onclick="send_message()">
+                </div>
+
+            </form>
+        </div>
+    </div>  <!-- Send Mail -->
+
 
 	<footer id="fh5co-footer" role="contentinfo">
 		<div class="container">
@@ -112,11 +192,61 @@
 		</div>
 	</footer>
 	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
 	
+
+    <!-- send message -->
+    <script>
+        function send_message(){
+            var subject;
+            subject = document.getElementById("input_subject");
+            // TODO : send message
+            new jBox('Notice', {content: 'Message sent with subject: ' + subject.value + '', color: 'black', attributes: {y: 'bottom'}})
+        }
+    </script>
+    <!-- add skill -->
+    <script>
+        function add_skill(){
+            var skill, description;
+            skill = document.getElementById("input_skill");
+            description = document.getElementById("input_description");
+            // TODO : add skill to database
+            new jBox('Notice', {content: 'skill: "' + skill.value + '" added to your list of skills' + '<br> with description: "' + description.value + '"', color: 'black', attributes: {y: 'bottom'}})
+        }
+    </script>
+    <!-- send_request -->
+    <script>
+        function send_request(){
+            // TODO : send request
+            new jBox('Notice', {content: 'Your request has been sent!', color: 'black', attributes: {y: 'bottom'}})
+        }
+    </script>
+    <!-- jBox -->
+    <script src="dist/jBox.all.js"></script>
+    <script src="jBox.js"></script>
+    <!-- search -->
+    <script>
+        function search() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 	<!-- jQuery -->
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
