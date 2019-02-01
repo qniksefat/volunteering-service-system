@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UsernameField, UserCreationForm
 
-from main.models import User, Charity, LEVEL_CHOICES, Volunteer, Project
+from main.models import User, Charity, LEVEL_CHOICES, Volunteer, Project, Payment
 
 
 class CharityCreationForm(UserCreationForm):
@@ -40,7 +40,7 @@ class VolunteerCreationForm(UserCreationForm):
 class ProjectCreationForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ('title',)
+        fields = ('title', 'project_type',)
 
     def __init__(self, *args, **kwargs):
         self.charity = kwargs.pop('charity')
@@ -52,3 +52,22 @@ class ProjectCreationForm(forms.ModelForm):
         if commit:
             project.save()
         return project
+
+
+class PaymentCreationForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = ('description', 'amount',)
+
+    def __init__(self, *args, **kwargs):
+        self.volunteer = kwargs.pop('volunteer')
+        self.project = kwargs.pop('project')
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        payment = super().save(commit=False)
+        payment.volunteer = self.volunteer
+        payment.project = self.project
+        if commit:
+            payment.save()
+        return payment

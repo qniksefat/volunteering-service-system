@@ -19,3 +19,19 @@ def charity_required(func=None):
     if func:
         return decorator(func)
     return decorator
+
+
+def volunteer_required(func=None):
+    def decorator(view_func):
+        @wraps(view_func)
+        def _wrapped_view(request, *args, **kwargs):
+            if request.user.is_authenticated and request.user.user_type == User.VOLUNTEER:
+                request.volunteer = request.user.volunteer
+                return view_func(request, *args, **kwargs)
+            raise PermissionDenied()
+
+        return _wrapped_view
+
+    if func:
+        return decorator(func)
+    return decorator

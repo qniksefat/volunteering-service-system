@@ -2,10 +2,12 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render, redirect
+from django.http import Http404
+from django.shortcuts import render, redirect, get_object_or_404
 
-from main.decorators import charity_required
-from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreationForm
+from main.decorators import charity_required, volunteer_required
+from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreationForm, PaymentCreationForm
+from main.models import Project
 
 
 class MyLoginView(LoginView):
@@ -55,3 +57,24 @@ def new_project(request):
     else:
         form = ProjectCreationForm(charity=request.charity)
     return render(request, 'new_project.html', {'form': form})
+
+
+def projects(request):
+    objects = Project.objects.filter(end_time__isnull=True)
+    return render(request, 'project_list.html', {'projects': objects})
+
+
+@volunteer_required
+def create_payment(request, project_id):
+    project = get_object_or_404(Project, id=project_id)
+    if not project.project_type == Project.FINANCIAL:
+        raise Http404('non financial project has no payment')
+
+    if request.method == 'POST':
+        form = PaymentCreationForm(data=request.POST, volunteer=request.volunteer, project=project)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = PaymentCreationForm(volunteer=request.volunteer, project=project)
+    return render(request, 'payment.html', {'form': form})

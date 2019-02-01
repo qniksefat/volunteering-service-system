@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="col-lg-12">
+        <div class="col-lg-4 float-left">
+            title
+        </div>
+        <div class="col-lg-4 float-left">
+            start time
+        </div>
+        <div class="col-lg-4 float-left">
+            type
+        </div>
+    </div>
+    {% for project in projects %}
+        <div class="col-lg-12">
+            <div class="col-lg-4 float-left">
+                {{ project.title }}
+            </div>
+            <div class="col-lg-4 float-left">
+                {{ project.start_time }}
+            </div>
+            <div class="col-lg-4 float-left">
+                {{ project.get_project_type_display }}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

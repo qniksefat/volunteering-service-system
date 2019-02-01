@@ -37,7 +37,15 @@ class Volunteer(models.Model):
 
 
 class Project(models.Model):
+    FINANCIAL = 0
+    NON_FINANCIAL = 1
+    TYPES = (
+        (FINANCIAL, 'Financial'),
+        (NON_FINANCIAL, 'Non Financial'),
+    )
+
     title = models.CharField(max_length=255)
+    project_type = models.PositiveSmallIntegerField(choices=TYPES, default=FINANCIAL)
     start_time = models.DateTimeField(default=timezone.now)
     end_time = models.DateTimeField(null=True)
     created_by = models.ForeignKey(Charity, on_delete=SET_NULL, null=True)
