@@ -4,7 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
 
-from main.forms import CharityCreationForm, VolunteerCreationForm
+from main.decorators import charity_required
+from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreationForm
 
 
 class MyLoginView(LoginView):
@@ -29,7 +30,7 @@ def charity_signup(request):
             return redirect(settings.LOGIN_REDIRECT_URL)
     else:
         form = CharityCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'charity_signup.html', {'form': form})
 
 
 def volunteer_signup(request):
@@ -41,4 +42,16 @@ def volunteer_signup(request):
             return redirect(settings.LOGIN_REDIRECT_URL)
     else:
         form = VolunteerCreationForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'volunteer_signup.html', {'form': form})
+
+
+@charity_required
+def new_project(request):
+    if request.method == 'POST':
+        form = ProjectCreationForm(data=request.POST, charity=request.charity)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ProjectCreationForm(charity=request.charity)
+    return render(request, 'new_project.html', {'form': form})

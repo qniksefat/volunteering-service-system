@@ -39,9 +39,9 @@ class Volunteer(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=255)
     start_time = models.DateTimeField(default=timezone.now)
-    end_time = models.DateTimeField()
-    created_by = models.ForeignKey(Charity, on_delete=SET_NULL, null=True, blank=True)
-    approved_by = models.ForeignKey(User, on_delete=SET_NULL, null=True, blank=True, related_name='projects_approved')
+    end_time = models.DateTimeField(null=True)
+    created_by = models.ForeignKey(Charity, on_delete=SET_NULL, null=True)
+    approved_by = models.ForeignKey(User, on_delete=SET_NULL, null=True, related_name='projects_approved')
     paid_by = models.ManyToManyField(Volunteer, through='Payment')
 
 
