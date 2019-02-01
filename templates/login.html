@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">login</button>
-    </form>
-    <a style="float: right" href="{% url 'charity_signup' %}">charity signup</a>
     <br/>
-    <a style="float: right" href="{% url 'volunteer_signup' %}">volunteer signup</a>
+    <br/>
+    <div style="text-align: center;width: 300px; margin:auto;border:thin solid black">
+        <br/>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+                <button type="submit" class="btn btn-primary btn-block" style="max-width: 100px; margin:auto"> Login  </button>
+            <br/>
+        </form>
+        <a style="float: right;margin: auto" href="{% url 'charity_signup' %}" class="float-left btn btn-outline-primary">charity signup</a>
+        <a style="float: right;margin: auto" href="{% url 'volunteer_signup' %}" class="float-right btn btn-outline-primary">volunteer signup</a>
+    </div>
 {% endblock %}
