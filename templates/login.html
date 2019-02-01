@@ -3,15 +3,30 @@
 {% block body %}
     <br/>
     <br/>
-    <div style="text-align: center;width: 300px; margin:auto;border:thin solid black">
-        <br/>
-        <form method="post">
-            {% csrf_token %}
-            {{ form }}
-                <button type="submit" class="btn btn-primary btn-block" style="max-width: 100px; margin:auto"> Login  </button>
-            <br/>
-        </form>
-        <a style="float: right;margin: auto" href="{% url 'charity_signup' %}" class="float-left btn btn-outline-primary">charity signup</a>
+    <div class="card" style="width:500px;margin:auto">
+    <article class="card-body">
+        <a style="float: right;margin: auto" href="{% url 'charity_signup' %}" class="float-right btn btn-outline-primary">charity signup</a>
         <a style="float: right;margin: auto" href="{% url 'volunteer_signup' %}" class="float-right btn btn-outline-primary">volunteer signup</a>
-    </div>
+    <h4 class="card-title mb-4 mt-1">Sign in</h4>
+         <form>
+        <div class="form-group">
+            <label>Your email</label>
+            <input name="" class="form-control" placeholder="Email" type="email">
+        </div> <!-- form-group// -->
+        <div class="form-group">
+            <a class="float-right" href="#">Forgot?</a>
+            <label>Your password</label>
+            <input class="form-control" placeholder="******" type="password">
+        </div> <!-- form-group// -->
+        <div class="form-group">
+        <div class="checkbox">
+          <label> <input type="checkbox"> Save password </label>
+        </div> <!-- checkbox .// -->
+        </div> <!-- form-group// -->
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+        </div> <!-- form-group// -->
+    </form>
+    </article>
+    </div> <!-- card.// -->
 {% endblock %}
