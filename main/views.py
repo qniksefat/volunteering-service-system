@@ -6,8 +6,9 @@ from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
 from main.decorators import charity_required, volunteer_required
-from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreationForm, PaymentCreationForm
-from main.models import Project
+from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreationForm, PaymentCreationForm, \
+    SkillCreationForm
+from main.models import Project, VolunteerHasSkill
 
 
 class MyLoginView(LoginView):
@@ -78,3 +79,20 @@ def create_payment(request, project_id):
     else:
         form = PaymentCreationForm(volunteer=request.volunteer, project=project)
     return render(request, 'payment.html', {'form': form})
+
+
+@volunteer_required
+def volunteer_page(request):
+    if request.method == 'POST':
+        form = SkillCreationForm(data=request.POST)
+        if form.is_valid():
+            skill = form.save()
+            VolunteerHasSkill.objects.create(skill=skill,
+                                             level=form.cleaned_data['level'],
+                                             volunteer=request.volunteer)
+            return redirect('volunteer_page')
+    else:
+        form = SkillCreationForm()
+
+    objects = VolunteerHasSkill.objects.filter(volunteer=request.volunteer)
+    return render(request, 'volunteer.html', {'form': form, 'skills': objects})
