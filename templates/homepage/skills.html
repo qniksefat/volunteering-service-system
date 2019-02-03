@@ -102,15 +102,18 @@
             <table id="myTable">
                 <tr class="header">
                     <th style="width:30%;">Skill</th>
-                    <th style="width:70%;">Description</th>
+                    <th style="width:60%;">Description</th>
+                    <th style="width:10%;"></th>
                 </tr>
                 <tr>
                     <td>Skill1</td>
                     <td>skill description</td>
+                    <td><input type="button" value="Remove" class="btn" onclick="remove_skill()"></td>
                 </tr>
                 <tr>
                     <td>Skill2</td>
                     <td>skill description</td>
+                    <td><input type="button" value="Remove" class="btn" onclick="remove_skill()"></td>
                 </tr>
             </table>
             <br>
@@ -157,6 +160,13 @@
 	</div>
 
 
+    <!-- remove skill -->
+     <script>
+        function remove_skill(){
+            // TODO : remove skill from database and proper message
+            new jBox('Notice', {content: 'skill removed' , color: 'black', attributes: {y: 'bottom'}})
+        }
+    </script>
     <!-- add skill -->
      <script>
         function add_skill(){
