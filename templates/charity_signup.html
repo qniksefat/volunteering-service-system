@@ -1,54 +1,61 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    <form  style="margin-right: 50px; margin-left: 50px;" class="form-horizontal" action='' method="POST">
+    <div class="alert-danger">
+        {{ form.errors }}
+    </div>
+    <form style="margin-right: 50px; margin-left: 50px;" class="form-horizontal" method="POST">
         {% csrf_token %}
         <fieldset style="direction: rtl">
-            <div  id="legend">
+            <div id="legend">
                 <legend style="text-align: right;" class="">ثبت نام</legend>
             </div>
 
-            <div      class="control-group">
+            <div class="control-group">
                 <!-- Username -->
-                <label  style="float:right;" class="control-label" for="username">نام کاربری</label>
+                <label style="float:right;" class="control-label" for="username">نام کاربری</label>
                 <div class="controls">
-                    <input style= "float:right;" type="text" id="username" name="username" placeholder="" class="input-xlarge">
+                    <input style="float:right;" type="text" id="username" name="username" placeholder=""
+                           class="input-xlarge">
                     <br/>
-                    <p  style= "float:right;" class="help-block">نام کاربری  می تواند شامل هرگونه حرف و عدد، اما بدون فاصله باشد.</p>
+                    <p style="float:right;" class="help-block">نام کاربری می تواند شامل هرگونه حرف و عدد، اما بدون فاصله
+                        باشد.</p>
                 </div>
             </div>
 
             <div class="control-group">
                 <!-- E-mail -->
-                <label style= "float:right;" class="control-label" for="email">پست الکترونیکی</label>
+                <label style="float:right;" class="control-label" for="email">پست الکترونیکی</label>
                 <div class="controls">
-                    <input  style= "float:right;"type="text" id="email" name="email" placeholder="" class="input-xlarge">
+                    <input style="float:right;" type="text" id="email" name="email" placeholder="" class="input-xlarge">
                     <br/>
-                    <p style= "float:right;"    class="help-block">لطفا پست الکترونیکی خود را وارد کنید.</p>
+                    <p style="float:right;" class="help-block">لطفا پست الکترونیکی خود را وارد کنید.</p>
                 </div>
             </div>
 
             <div class="control-group">
                 <!-- Password-->
-                <label style= "float:right;" class="control-label" for="password">رمز عبور</label>
+                <label style="float:right;" class="control-label" for="password">رمز عبور</label>
                 <div class="controls">
-                    <input style= "float:right;" type="password" id="password" name="password1" placeholder="" class="input-xlarge">
+                    <input style="float:right;" type="password" id="password" name="password1" placeholder=""
+                           class="input-xlarge">
                     <br/>
-                    <p  style= "float:right;" class="help-block">رمز عبور حداقل 4 کاراکتر باید باشد</p>
+                    <p style="float:right;" class="help-block">رمز عبور حداقل 4 کاراکتر باید باشد</p>
                 </div>
             </div>
 
             <div class="control-group">
                 <!-- Password -->
-                <label style= "float:right;"class="control-label" for="password_confirm">رمز عبور (تایید)</label>
+                <label style="float:right;" class="control-label" for="password_confirm">رمز عبور (تایید)</label>
                 <div class="controls">
-                    <input style= "float:right;"type="password" id="password_confirm" name="password2" placeholder="" class="input-xlarge">
+                    <input style="float:right;" type="password" id="password_confirm" name="password2" placeholder=""
+                           class="input-xlarge">
                     <br/>
-                    <p style= "float:right;"class="help-block">لطفا رمزعبور خود را دوباره وارد کنید.</p>
+                    <p style="float:right;" class="help-block">لطفا رمزعبور خود را دوباره وارد کنید.</p>
                 </div>
             </div>
 
-            <div style="float: right;margin-right: 200px;" "control-group">
+            <div style="float: right;margin-right: 200px;" class="control-group">
                 <!-- Button -->
                 <div class="controls">
                     <button class="btn btn-success">ثبت نام</button>
