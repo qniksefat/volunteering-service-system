@@ -3,7 +3,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Home</title>
+	<title>خانه</title>
 
 
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
@@ -40,7 +40,7 @@
 	<![endif]-->
 
 	</head>
-	<body>
+	<body style="direction: rtl">
 
 	<div class="fh5co-loader"></div>
 
@@ -49,16 +49,16 @@
 		<div class="top-menu">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="home.html">Welcome user_name<span>.</span></a></div>
+					<div style="float: right;" class="col-xs-2">
+						<div id="fh5co-logo"><a href="home.html">کاربر خوش آمدید!<span>.</span></a></div>
 					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<li class="active"><a href="home.html">Profile</a></li>
-							<li><a href="organizations_list.html">Organizations</a></li>
-							<li><a href="projects_list.html">Projects</a></li>
-                            <li><a href="mail.html">Mail</a></li>
-                            <li class="btn-cta"><a href="index.html"><span>Logout</span></a></li>
+					<div  class="col-xs-10 text-right menu-1">
+						<ul style="float: left;">
+							<li class="active"><a href="home.html">پروفایل</a></li>
+							<li><a href="organizations_list.html">موسسه</a></li>
+							<li><a href="projects_list.html">پروژه ها</a></li>
+                            <li><a href="mail.html">پست الکترونیکی</a></li>
+                            <li class="btn-cta"><a href="index.html"><span>خروج</span></a></li>
 							<!--<li class="has-dropdown">
 								<a href="blog.html">Blog</a>
 								<ul class="dropdown">
@@ -81,39 +81,39 @@
 
     <div id="fh5co-practice" class="fh5co-bg-section">
         <div class="container">
-            <h1>Add Skills</h1>
+            <h1>افزودن مهارت</h1>
             <form action="" method="get">
-                <input type="text" size="50" id="input_skill" placeholder="Skill..">
+                <input type="text" size="50" id="input_skill" placeholder="مهارت..">
                 <br>
                 <br>
-                <input type="text" size="50" id="input_description" placeholder="Description..">
+                <input type="text" size="50" id="input_description" placeholder="توضیحات..">
                 <br>
                 <br>
-                <input type="button" value="Submit" class="btn btn-primary btn-lg" onclick="add_skill()">
+                <input type="button" value="ارسال" class="btn btn-primary btn-lg" onclick="add_skill()">
             </form>
         </div>
     </div>  <!-- add skill -->
 
     <div id="fh5co-counter" class="fh5co-counters">
         <div class="fh5co-heading text-center">
-            <h2>Verified Skills</h2>
+            <h2>مهارت های تایید شده</h2>
         </div>
         <div class="container">
             <table id="myTable">
                 <tr class="header">
-                    <th style="width:30%;">Skill</th>
-                    <th style="width:60%;">Description</th>
+                    <th style="width:20%;">مهارت</th>
+                    <th style="text-align: center" style="width:70%;">توضیحات</th>
                     <th style="width:10%;"></th>
                 </tr>
                 <tr>
-                    <td>Skill1</td>
-                    <td>skill description</td>
-                    <td><input type="button" value="Remove" class="btn" onclick="remove_skill()"></td>
+                    <td>مهارت 1</td>
+                    <td style="text-align: center">توضیحات مهارت</td>
+                    <td><input type="button" value="حذف" class="btn" onclick="remove_skill()"></td>
                 </tr>
                 <tr>
-                    <td>Skill2</td>
-                    <td>skill description</td>
-                    <td><input type="button" value="Remove" class="btn" onclick="remove_skill()"></td>
+                    <td>مهارت 2</td>
+                    <td style="text-align: center">توضیحات مهارت</td>
+                    <td><input type="button" value="حذف" class="btn" onclick="remove_skill()"></td>
                 </tr>
             </table>
             <br>
@@ -125,16 +125,16 @@
 		<div class="container">
 			<div class="row row-pb-md">
 				<div class="col-xs-10 fh5co-widget">
-					<h4>System Name</h4>
-					<p>System Description</p>
+					<h4>نام سامانه</h4>
+					<p>توضیحات سامانه</p>
 				</div>
 
 				<div class="col-xs-2">
-					<h4>Contact Us</h4>
+					<h4>تماس با ما</h4>
 					<ul class="fh5co-footer-links">
-                        <li><a href="#">Address</a></li>
-						<li><a href="#">Phone Number</a></li>
-						<li><a href="#">Mail Adress</a></li>
+                        <li><a href="#">آدرس</a></li>
+						<li><a href="#">شماره تماس</a></li>
+						<li><a href="#">آدرس پست الکترونیکی</a></li>
 					</ul>
 				</div>
 			</div>
@@ -143,7 +143,7 @@
 				<div class="col-md-12 text-center">
 					<p>
 						<small class="block">&copy; 2019 Sharif UT. All Rights Reserved.</small>
-						<small class="block">Designed by <a href="#" target="_blank">HTML5</a></small>
+						<small class="block">طراحی شده با <a href="#" target="_blank">HTML5</a></small>
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">

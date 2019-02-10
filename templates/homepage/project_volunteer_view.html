@@ -40,7 +40,7 @@
 	<![endif]-->
 
 	</head>
-	<body>
+	<body style="direction: rtl">
 
 	<div class="fh5co-loader"></div>
 
@@ -49,16 +49,16 @@
 		<div class="top-menu">
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-2">
-						<div id="fh5co-logo"><a href="home.html">Welcome user_name<span>.</span></a></div>
+					<div style="float: right;" class="col-xs-2">
+					<div id="fh5co-logo"><a href="home.html">کاربر خوش آمدید!<span>.</span></a></div>
 					</div>
-					<div class="col-xs-10 text-right menu-1">
-						<ul>
-							<li><a href="home.html">Profile</a></li>
-							<li><a href="organizations_list.html">Organizations</a></li>
-							<li class="active"><a href="projects_list.html">Projects</a></li>
-                            <li><a href="mail.html">Mail</a></li>
-                            <li class="btn-cta"><a href="index.html"><span>Logout</span></a></li>
+					<div  class="col-xs-10 text-right menu-1">
+						<ul style="float: left;">
+							<li class="active"><a href="home.html">پروفایل</a></li>
+							<li><a href="organizations_list.html">موسسه</a></li>
+							<li><a href="projects_list.html">پروژه ها</a></li>
+                            <li><a href="mail.html">پست الکترونیکی</a></li>
+                            <li class="btn-cta"><a href="index.html"><span>خروج</span></a></li>
 							<!--<li class="has-dropdown">
 								<a href="blog.html">Blog</a>
 								<ul class="dropdown">
@@ -88,9 +88,9 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text" style="height: 657px;">
                                 <div class="slider-text-inner">
-                                    <h1>Project Name</h1>
-                                    <h2>This project requires: ...</h2>
-                                    <p><a class="btn btn-primary btn-lg" data-confirm="Are you sure you want to apply for this project?" onclick="send_request()">Apply for Project</a></p>
+                                    <h1>نام پروژه</h1>
+                                    <h2>نیازمندی های این پروژه:...</h2>
+                                    <p><a class="btn btn-primary btn-lg" data-confirm="Are you sure you want to apply for this project?" onclick="send_request()">مشارکت در پروژه</a></p>
                                     <!--<p><a class="btn btn-primary btn-lg" >Apply for Project</a></p>-->
                                 </div>
                             </div>
@@ -103,9 +103,9 @@
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text" style="height: 657px;">
                                 <div class="slider-text-inner">
-                                    <h1>Organization Name</h1>
-                                    <h2>This project is provided by: organization_name</h2>
-                                    <p><a class="btn btn-primary btn-lg" href="organization_volunteer_view.html">View Organization</a></p>
+                                    <h1>نام موسسه</h1>
+                                    <h2>این پروژه توسط این موسسه تدوین شده: نام موسسه</h2>
+                                    <p><a class="btn btn-primary btn-lg" href="organization_volunteer_view.html">مشاهده موسسه</a></p>
                                 </div>
                             </div>
                         </div>
@@ -120,17 +120,17 @@
             <div class="col-xs-4 text-center animate-box fadeInUp animated-fast">
                 <span class="icon"><i class="icon-user"></i></span>
                 <span class="fh5co-counter js-counter" data-from="0" data-to="21" data-speed="5000" data-refresh-interval="50">20</span>
-                <span class="fh5co-counter-label">Working on</span>
+                <span class="fh5co-counter-label">در حال انجام</span>
             </div>
             <div class="col-xs-4 text-center animate-box fadeInUp animated-fast">
                 <span class="icon"><i class="icon-pie-chart"></i></span>
                 <span class="fh5co-counter js-counter" data-from="0" data-to="75" data-speed="5000" data-refresh-interval="50">75%</span>%
-                <span class="fh5co-counter-label">Work Done</span>
+                <span class="fh5co-counter-label">به اتمام رسیده</span>
             </div>
             <div class="col-xs-4 text-center animate-box fadeInUp animated-fast">
                 <span class="icon"><i class="icon-trophy"></i></span>
                 <span class="fh5co-counter js-counter" data-from="0" data-to="500" data-speed="5000" data-refresh-interval="50">500</span>
-                <span class="fh5co-counter-label">Points</span>
+                <span class="fh5co-counter-label">امتیازات</span>
             </div>
         </div>
     </div>  <!-- Stats -->
@@ -140,16 +140,16 @@
 		<div class="container">
 			<div class="row row-pb-md">
 				<div class="col-xs-10 fh5co-widget">
-					<h4>System Name</h4>
-					<p>System Description</p>
+					<h4>نام سامانه</h4>
+					<p>توضیحات سامانه</p>
 				</div>
 
 				<div class="col-xs-2">
-					<h4>Contact Us</h4>
+						<h4>تماس با ما</h4>
 					<ul class="fh5co-footer-links">
-                        <li><a href="#">Address</a></li>
-						<li><a href="#">Phone Number</a></li>
-						<li><a href="#">Mail Adress</a></li>
+                        <li><a href="#">آدرس</a></li>
+						<li><a href="#">شماره تماس</a></li>
+						<li><a href="#">آدرس پست الکترونیکی</a></li>
 					</ul>
 				</div>
 			</div>
@@ -158,7 +158,7 @@
 				<div class="col-md-12 text-center">
 					<p>
 						<small class="block">&copy; 2019 Sharif UT. All Rights Reserved.</small>
-						<small class="block">Designed by <a href="#" target="_blank">HTML5</a></small>
+						<small class="block">طراحی شده با <a href="#" target="_blank">HTML5</a></small>
 					</p>
 					<p>
 						<ul class="fh5co-social-icons">
