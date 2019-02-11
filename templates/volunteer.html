@@ -1,37 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'vbase.html' %}
 
 {% block body %}
-    <div class="col-lg-12">
-        <div class="col-lg-6 float-left">
-            نام مهارت
-        </div>
-        <div class="col-lg-5 float-left">
-            سطح
-        </div>
-    </div>
-    {% for skill in skills %}
-        <div class="col-lg-12">
-            <div class="col-lg-6 float-left">
-                {{ skill.skill.title }}
-            </div>
-            <div class="col-lg-5 float-left">
-                {{ skill.level }}
-            </div>
-        </div>
-    {% endfor %}
-    <form method="post">
-        {% csrf_token %}
-        {{ form.errors }}
-        <div class="col-lg-12">
-            <div class="col-lg-6 float-left">
-                {{ form.title }}
-            </div>
-            <div class="col-lg-5 float-left">
-                {{ form.level }}
-            </div>
-            <div class="col-lg-1 float-left">
-                <button type="submit">اضافه کردن</button>
-            </div>
-        </div>
-    </form>
+
+
 {% endblock %}
