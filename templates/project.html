@@ -1,0 +1,157 @@
+{% extends 'vbase.html' %}
+{% block title %}
+    پروژه ها
+{% endblock %}
+{% block body %}
+    {% if user.get_user_type_display == "volunteer" %}
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li><a href="{% url 'charities' %}">موسسات</a></li>
+                                <li class="active"><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li><a href="mail.html">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>  <!-- navigator -->
+
+        <aside id="fh5co-hero" class="js-fullheight" style="height: 657px;">
+		<div class="flexslider js-fullheight" style="height: 657px;">
+			<ul class="slides">
+                <li style="background-image: url('/static/images/img_bg_1.jpg'); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; height: 657px;" class="" data-thumb-alt="">
+                    <div class="overlay-gradient"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text" style="height: 657px;">
+                                <div class="slider-text-inner">
+                                    <h1>{{ project.title }}</h1>
+                                    <h2>{{ project_type }}</h2>
+                                    <h3>مهارت های مورد نیاز: {{ opportunity.needed_skills }}</h3>
+                                    <p><a class="btn btn-primary btn-lg" data-confirm="Are you sure you want to apply for this project?" onclick="send_request()">مشارکت در پروژه</a></p>
+                                    <!--<p><a class="btn btn-primary btn-lg" >Apply for Project</a></p>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="background-image: url('/static/images/img_bg_1.jpg'); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; height: 657px;" class="" data-thumb-alt="">
+                    <div class="overlay-gradient"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text" style="height: 657px;">
+                                <div class="slider-text-inner">
+                                    <h1>این پروژه توسط {{ project.created_by.user.username }} تعریف شده</h1>
+                                    <p><a class="btn btn-primary btn-lg" href="organization_volunteer_view.html">مشاهده موسسه {{ project.created_by.user.username }}</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+	  	</div>
+	</aside>  <!-- Introduction -->
+
+    {% elif user.get_user_type_display == "charity" %}
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li><a href="{% url 'volunteers' %}">نیکوکاران</a></li>
+                                <li class="active"><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li><a href="mail.html">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>  <!-- navigator -->
+
+        <aside id="fh5co-hero" class="js-fullheight" style="height: 657px;">
+		<div class="flexslider js-fullheight" style="height: 657px;">
+			<ul class="slides">
+                <li style="background-image: url('/static/images/img_bg_1.jpg'); width: 100%; float: left; margin-right: -100%; position: relative; opacity: 0; display: block; z-index: 1; height: 657px;" class="" data-thumb-alt="">
+                    <div class="overlay-gradient"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center js-fullheight slider-text" style="height: 657px;">
+                                <div class="slider-text-inner">
+                                    <h1>{{ project.title }}</h1>
+                                    <h2>{{ project_type }}</h2>
+                                    <h3>مهارت های مورد نیاز: {{ opportunity.needed_skills }}</h3>
+                                    <p><a class="btn btn-primary btn-lg" data-confirm="Are you sure you want to apply for this project?" onclick="send_request()">مشارکت در پروژه</a></p>
+                                    <!--<p><a class="btn btn-primary btn-lg" >Apply for Project</a></p>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+	  	</div>
+	</aside>  <!-- Introduction -->
+
+    {% endif %}
+
+    <div id="fh5co-counter" class="fh5co-counters fh5co-bg-section animated">
+        <div class="row">
+            <div class="col-xs-4 text-center animate-box fadeInUp animated-fast">
+                <span class="icon"><i class="icon-user"></i></span>
+                <span class="fh5co-counter js-counter" data-from="0" data-to="21" data-speed="5000" data-refresh-interval="50">20</span>
+                <span class="fh5co-counter-label">در حال انجام</span>
+            </div>
+            <div class="col-xs-4 text-center animate-box fadeInUp animated-fast">
+                <span class="icon"><i class="icon-pie-chart"></i></span>
+                <span class="fh5co-counter js-counter" data-from="0" data-to="75" data-speed="5000" data-refresh-interval="50">75%</span>%
+                <span class="fh5co-counter-label">به اتمام رسیده</span>
+            </div>
+            <div class="col-xs-4 text-center animate-box fadeInUp animated-fast">
+                <span class="icon"><i class="icon-trophy"></i></span>
+                <span class="fh5co-counter js-counter" data-from="0" data-to="500" data-speed="5000" data-refresh-interval="50">500</span>
+                <span class="fh5co-counter-label">امتیازات</span>
+            </div>
+        </div>
+    </div>  <!-- Stats -->
+
+{% endblock %}
