@@ -75,7 +75,7 @@ def create_payment(request, project_id):
         form = PaymentCreationForm(data=request.POST, volunteer=request.volunteer, project=project)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('projects')
     else:
         form = PaymentCreationForm(volunteer=request.volunteer, project=project)
     return render(request, 'payment.html', {'form': form})
