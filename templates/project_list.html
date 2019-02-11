@@ -1,7 +1,10 @@
 {% extends 'vbase.html' %}
-
+{% block title %}
+    پروژه ها
+{% endblock %}
 {% block body %}
-    <nav class="fh5co-nav" role="navigation">
+    {% if user.get_user_type_display == "volunteer" %}
+        <nav class="fh5co-nav" role="navigation">
             <div class="top-menu">
                 <div class="container">
                     <div class="row">
@@ -34,7 +37,41 @@
                 </div>
             </div>
         </nav>  <!-- navigator -->
-
+    {% elif user.get_user_type_display == "charity" %}
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li><a href="{% url 'volunteers' %}">نیکوکاران</a></li>
+                                <li class="active"><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li><a href="mail.html">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>  <!-- navigator -->
+    {% endif %}
     <div class="container">
         <input type="text" id="myInput" onkeyup="search()" placeholder="جستجوی نام..">
 
