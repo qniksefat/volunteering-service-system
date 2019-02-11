@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from main.decorators import charity_required, volunteer_required
 from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreationForm, PaymentCreationForm, \
     SkillCreationForm
-from main.models import Project, VolunteerHasSkill, Charity, Volunteer
+from main.models import Project, VolunteerHasSkill, Charity, Volunteer, Opportunity
 
 
 class MyLoginView(LoginView):
@@ -54,7 +54,7 @@ def new_project(request):
         form = ProjectCreationForm(data=request.POST, charity=request.charity)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('projects')
     else:
         form = ProjectCreationForm(charity=request.charity)
     return render(request, 'new_project.html', {'form': form})
@@ -63,6 +63,23 @@ def new_project(request):
 def projects(request):
     objects = Project.objects.filter(end_time__isnull=True)
     return render(request, 'project_list.html', {'projects': objects})
+
+
+def project(request, project_id):
+    projects_list = Project.objects.filter(end_time__isnull=True)
+    for p in projects_list:
+        if p.id == project_id:
+            matched_project = p
+            project_type = 'غیر نقدی'
+            if matched_project.project_type == 0:
+                project_type = 'نقدی'
+            opportunity = None
+            for o in Opportunity.objects.all():
+                if o.project.id == project_id:
+                    opportunity = o
+
+            return render(request, 'project.html', {'project': matched_project, 'project_type': project_type, 'opportunity': opportunity})
+    return render(request, 'project_list.html', {'projects': projects_list})
 
 
 @volunteer_required

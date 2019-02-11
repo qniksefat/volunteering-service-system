@@ -73,27 +73,6 @@
         </nav>  <!-- navigator -->
     {% endif %}
 
-    <div id="fh5co-practice" class="fh5co-bg-section">
-        <div class="container">
-            <h1>تعریف پروژه</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.errors }}
-                پروژه:
-                {{ form.title }}
-                <br>
-                <br>
-                نوع:
-                {{ form.project_type }}
-                <br>
-                <br>
-                <button type="submit" href="{% url 'create_project' %}" class="btn btn-primary">تعریف</button>
-            </form>
-        </div>
-    </div>  <!-- add project -->
-
-    <br>
-
     <div class="container">
         <input type="text" id="myInput" onkeyup="search()" placeholder="جستجوی نام..">
 
@@ -105,7 +84,7 @@
             </tr>
             {% for project in projects %}
                 <tr>
-                    <td><a href="project_volunteer_view.html">{{ project.title }}</a></td>
+                    <td style="text-align: center"><a href="{% url 'project' project_id=project.id %}">{{ project.title }}</a></td>
                     <td style="text-align: center">{{ project.get_project_type_display }}</td>
                     <td style="text-align: center">{{ project.start_time }}</td>
                 </tr>
@@ -114,5 +93,9 @@
         <br>
     </div>  <!-- projects -->
 
+    <div align="center" class="container">
+        <a href="{% url 'create_project' %}"><input type="button" value="تعریف پروژه جدید" class="btn btn-primary"></a>
+    </div>  <!-- add project -->
+    <br>
 
 {% endblock %}
