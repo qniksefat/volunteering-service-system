@@ -1,0 +1,151 @@
+{% extends 'vbase.html' %}
+{% block title %}
+    پروژه ها
+{% endblock %}
+{% block body %}
+    {% if user.get_user_type_display == "volunteer" %}
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li><a href="{% url 'charities' %}">موسسات</a></li>
+                                <li><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li class="active"><a href="{% url 'mails' %}">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>  <!-- navigator -->
+    {% elif user.get_user_type_display == "charity" %}
+        <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li><a href="{% url 'volunteers' %}">نیکوکاران</a></li>
+                                <li><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li class="active"><a href="{% url 'mails' %}">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>  <!-- navigator -->
+    {% endif %}
+
+    <div id="fh5co-counter" class="fh5co-bg-section">
+        <div class="fh5co-heading text-center">
+            <h2>صندوق پیام</h2>
+        </div>
+        <div class="container">
+            <table id="myTable">
+                <tr class="header">
+                    <th style="text-align: center" style="width:7%;">خوانده شده</th>
+                    <th style="text-align: center" style="width:17%;">موضوع</th>
+                    <th style="text-align: center" style="width:23%;">از</th>
+                    <th style="text-align: center" style="width:50%;">زمینه</th>
+                </tr>
+                <tr>
+                    <td style="text-align: center" style="text-align: center;"><label><input type="checkbox"></label></td>
+                    <td style="text-align: center">درخواست پروژه</td>
+                    <td style="text-align: center">Sum.Yungai@gmail.com</td>
+                    <td style="text-align: center">کاربر عزیز، ما علاقه مند به همکاری در پروژه ...</td>
+                </tr>
+                <tr style="text-align: center">
+                    <td style="text-align: center" style="text-align: center;"><label><input type="checkbox" checked></label></td>
+                    <td style="text-align: center">درخواست پروژه</td>
+                    <td style="text-align: center">Donald.Trump@gmail.com</td>
+                    <td style="text-align: center">کاربر عزیز، ما علاقه مند به همکاری در پروژه ...</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center" style="text-align: center;"><label><input type="checkbox" checked></label></td>
+                    <td style="text-align: center">درخواست پروژه</td>
+                    <td style="text-align: center">Aids.Official@gmail.com</td>
+                    <td style="text-align: center">کاربر عزیز، ما علاقه مند به همکاری در پروژه ...</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center" style="text-align: center;"><label><input type="checkbox" checked></label></td>
+                    <td style="text-align: center">درخواست پروژه</td>
+                    <td style="text-align: center">Sum.Yungai@gmail.com</td>
+                    <td style="text-align: center">کاربر عزیز، ما علاقه مند به همکاری در پروژه ...</td>
+                </tr>
+
+            </table>
+            <br>
+        </div>
+    </div>  <!-- Inbox -->
+
+
+    <div class="choose animate-box fadeInUp animated-fast">
+        <div class="container">
+            <h1><br>ارسال پیام</h1>
+            <form action="#">
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <!-- <label for="email">Email</label> -->
+                        <input type="text" id="email" class="form-control" placeholder="ارسال به">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <!-- <label for="subject">Subject</label> -->
+                        <input type="text" id="input_subject" class="form-control" placeholder="موضوع">
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <!-- <label for="message">Message</label> -->
+                        <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="پیام اصلی"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="button" value="ارسال پیام" class="btn btn-primary" onclick="send_message()">
+                </div>
+
+            </form>
+        </div>
+    </div>  <!-- Send Mail -->
+
+{% endblock %}

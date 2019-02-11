@@ -155,3 +155,8 @@ def my_projects(request):
 def my_settings(request):
     project_lists = Project.objects.filter(end_time__isnull=True)
     return render(request, 'settings.html', {'projects': project_lists, 'opportunities': Opportunity.objects.all()})
+
+
+def mails(request):
+    project_lists = Project.objects.filter(end_time__isnull=True)
+    return render(request, 'mails.html', {'projects': project_lists, 'opportunities': Opportunity.objects.all()})
