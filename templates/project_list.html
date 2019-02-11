@@ -1,28 +1,58 @@
-{% extends 'base.html' %}
+{% extends 'vbase.html' %}
 
 {% block body %}
-    <div class="col-lg-12">
-        <div class="col-lg-4 float-left">
-            لیست پروژه ها
-        </div>
-        <div class="col-lg-4 float-left">
-            زمان شروع
-        </div>
-        <div class="col-lg-4 float-left">
-            نوع
-        </div>
-    </div>
-    {% for project in projects %}
-        <div class="col-lg-12">
-            <div class="col-lg-4 float-left">
-                {{ project.title }}
+    <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li><a href="{% url 'charities' %}">موسسات</a></li>
+                                <li class="active"><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li><a href="mail.html">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-4 float-left">
-                {{ project.start_time }}
-            </div>
-            <div class="col-lg-4 float-left">
-                {{ project.get_project_type_display }}
-            </div>
-        </div>
-    {% endfor %}
+        </nav>  <!-- navigator -->
+
+    <div class="container">
+        <input type="text" id="myInput" onkeyup="search()" placeholder="جستجوی نام..">
+
+        <table  id="myTable">
+            <tr style="text-align: center" class="header">
+                <th style="text-align: center; width:40%;">پروژه</th>
+                <th style="text-align: center; width:30%;">نوع</th>
+                <th style="text-align: center; width:30%;">زمان شروع</th>
+            </tr>
+            {% for project in projects %}
+                <tr>
+                    <td><a href="project_volunteer_view.html">{{ project.title }}</a></td>
+                    <td style="text-align: center">{{ project.get_project_type_display }}</td>
+                    <td style="text-align: center">{{ project.start_time }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+    </div>  <!-- projects -->
+
 {% endblock %}
