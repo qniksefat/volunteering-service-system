@@ -1,0 +1,127 @@
+{% extends 'vbase.html' %}
+{% block title %}
+    موسسات
+{% endblock %}
+{% block body %}
+     <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li class="active"><a href="{% url 'volunteers' %}">نیکوکاران</a></li>
+                                <li><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li><a href="mail.html">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>  <!-- navigator -->
+
+    <div id="fh5co-practice" class="fh5co-bg-section">
+		<div class="container">
+			<div class="row animate-box fadeInUp animated-fast">
+				<div class="text-center fh5co-heading">
+					<h2>{{ volunteer.user.username }}</h2>
+                    <p> مهارت ها:
+                        {% for skill in volunteer.skills.all %}
+                            {{ skill.title }}
+                        {% endfor %}
+                    </p>
+				</div>
+			</div>
+            <div class="row animate-box fadeInUp animated-fast">
+                <div class="text-center fh5co-heading">
+                    <a href=""><input type="button" value="درخواست همکاری" class="btn btn-primary"></a>
+                </div>
+            </div>  <!-- request volunteer -->
+		</div>
+	</div> <!-- Introduction -->
+
+    <div class="container">
+        <div class="choose animate-box fadeInUp animated-fast">
+			<div class="fh5co-heading text-center">
+				<h2><br>امتیازات</h2>
+            </div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+				برایند رضایت 50%
+				</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:80%">
+				مسئولیت پذیری 80%
+				</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+				زمان پاسخگویی 70%
+				</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+				نرخ موفقیت 40%
+				</div>
+			</div>
+            <br>
+		</div>
+    </div> <!-- Ratings -->
+
+    <div id="fh5co-blog" class="fh5co-bg-section">
+		<div class="container">
+			<div class="row animate-box fadeInUp animated-fast">
+				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+					<h2>پروژه ها</h2>
+				</div>
+			</div>
+			<div class="row">
+                {% for opportunity in opportunities %}
+                    {% for vol in opportunity.volunteers %}
+                        {% if vol.user == volunteer %}
+                            <div class="col-lg-4 col-md-4">
+                                <div class="fh5co-blog animate-box fadeInUp animated-fast">
+                                    <a href="{% url 'project' project_id=project.id %}"><img class="img-responsive" src="/static/images/project-4.jpg" alt=""></a>
+                                    <div class="blog-text">
+                                        <span class="posted_on">{{ project.start_time }}</span>
+                                        <!--span class="comment">12<i class="icon-users"></i>sads</span-->
+                                        <h3><a href="{% url 'project' project_id=project.id %}">{{ project.title }}</a></h3>
+                                        <p>مهارت های مورد نیاز:
+                                        {% for o in opportunities %}
+                                            {% if o.project.id == project.id %}
+                                                {{ o.needed_skills }}
+                                            {% endif %}
+                                        {% endfor %}
+                                        </p>
+                                        <a href="{% url 'project' project_id=project.id %}" class="btn btn-primary">مشاهده پروژه</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+			</div>
+		</div>
+	</div> <!-- Projects -->
+
+
+
+{% endblock %}
