@@ -85,7 +85,7 @@
             {% for project in projects %}
                 <tr>
                     <td style="text-align: center"><a href="{% url 'project' project_id=project.id %}">{{ project.title }}</a></td>
-                    <td style="text-align: center">{{ project.get_project_type_display }}</td>
+                    <td style="text-align: center">{% if project.get_project_type_display == 'Financial' %}نقدی{% else %}غیر نقدی{% endif %}</td>
                     <td style="text-align: center">{{ project.start_time }}</td>
                 </tr>
             {% endfor %}

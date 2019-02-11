@@ -14,5 +14,6 @@ urlpatterns = [
     path('projects/<int:project_id>/', views.project, name='project'),
     path('projects/<int:project_id>/pay', views.create_payment, name='create_payment'),
     path('charity/list/', views.charity_list, name='charities'),
+    path('charity/<int:charity_id>/', views.charity, name='charity'),
     path('volunteer/list/', views.volunteer_list, name='volunteers'),
 ]
