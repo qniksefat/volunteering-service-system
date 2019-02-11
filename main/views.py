@@ -150,3 +150,8 @@ def volunteer(request, volunteer_id):
 def my_projects(request):
     project_lists = Project.objects.filter(end_time__isnull=True)
     return render(request, 'my_projects.html', {'projects': project_lists, 'opportunities': Opportunity.objects.all()})
+
+
+def my_settings(request):
+    project_lists = Project.objects.filter(end_time__isnull=True)
+    return render(request, 'settings.html', {'projects': project_lists, 'opportunities': Opportunity.objects.all()})
