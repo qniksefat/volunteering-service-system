@@ -47,7 +47,7 @@
             </tr>
             {% for volunteer in volunteers %}
                 <tr>
-                    <td style="text-align: center"><a href="organization_volunteer_view.html">{{ volunteer.user.username }}</a></td>
+                    <td style="text-align: center"><a href="{% url 'volunteer' volunteer_id=volunteer.id %}">{{ volunteer.user.username }}</a></td>
                     <td style="text-align: center">
                         {% for skill in volunteer.skills.all %}
                             {{ skill.title }}

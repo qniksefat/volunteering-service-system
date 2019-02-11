@@ -135,3 +135,18 @@ def charity(request, charity_id):
             project_lists = Project.objects.filter(created_by=c)
             return render(request, 'charity.html', {'charity': matched_charity, 'projects': project_lists, 'opportunities': Opportunity.objects.all()})
     return render(request, 'charity_list.html', {'charities': charities_list, 'projects': project_lists})
+
+
+def volunteer(request, volunteer_id):
+    project_lists = Project.objects.filter(end_time__isnull=True)
+    volunteers_list = Volunteer.objects.all()
+    for c in volunteers_list:
+        if c.id == volunteer_id:
+            matched_volunteer = c
+            return render(request, 'volunteer_view.html', {'volunteer': matched_volunteer, 'projects': project_lists, 'opportunities': Opportunity.objects.all()})
+    return render(request, 'volunteer_list.html', {'volunteers': volunteers_list, 'projects': project_lists})
+
+
+def my_projects(request):
+    project_lists = Project.objects.filter(end_time__isnull=True)
+    return render(request, 'my_projects.html', {'projects': project_lists, 'opportunities': Opportunity.objects.all()})
