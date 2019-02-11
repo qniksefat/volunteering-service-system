@@ -37,5 +37,25 @@
             </div>
         </nav>  <!-- navigator -->
 
+    <div class="container">
+        <input type="text" id="myInput" onkeyup="search()" placeholder="جستجوی نام ها..">
 
+        <table  id="myTable">
+            <tr  class="header">
+                <th style="text-align: center" style="width:30%;">نام</th>
+                <th  style="text-align: center" style="width:70%;">مهارت ها</th>
+            </tr>
+            {% for volunteer in volunteers %}
+                <tr>
+                    <td style="text-align: center"><a href="organization_volunteer_view.html">{{ volunteer.user.username }}</a></td>
+                    <td style="text-align: center">
+                        {% for skill in volunteer.skills.all %}
+                            {{ skill.title }}
+                        {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+    </div>  <!-- volunteers -->
 {% endblock %}

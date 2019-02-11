@@ -72,6 +72,28 @@
             </div>
         </nav>  <!-- navigator -->
     {% endif %}
+
+    <div id="fh5co-practice" class="fh5co-bg-section">
+        <div class="container">
+            <h1>تعریف پروژه</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.errors }}
+                پروژه:
+                {{ form.title }}
+                <br>
+                <br>
+                نوع:
+                {{ form.project_type }}
+                <br>
+                <br>
+                <button type="submit" href="{% url 'create_project' %}" class="btn btn-primary">تعریف</button>
+            </form>
+        </div>
+    </div>  <!-- add project -->
+
+    <br>
+
     <div class="container">
         <input type="text" id="myInput" onkeyup="search()" placeholder="جستجوی نام..">
 
@@ -91,5 +113,6 @@
         </table>
         <br>
     </div>  <!-- projects -->
+
 
 {% endblock %}
