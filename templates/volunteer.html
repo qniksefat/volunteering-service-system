@@ -6,15 +6,15 @@
                 <div class="container">
                     <div class="row">
                         <div style="float: right" class="col-xs-2">
-                            <div id="fh5co-logo"><a href="{% url 'home' %}">کاربر خوش آمدید<span>.</span></a></div>
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">{{ user.get_full_name|default:user.username }} خوش آمدید<span>.</span></a></div>
                         </div>
                         <div  class="col-xs-10 text-right menu-1">
                             <ul style="float: left">
-                                <li class="btn-cta"><a href="index.html"><span>خروج</span></a></li>
                                 <li class="active"><a href="{% url 'home' %}">پروفایل</a></li>
                                 <li><a href="organizations_list.html">موسسات</a></li>
                                 <li><a href="{% url 'projects' %}">پروژه ها</a></li>
                                 <li><a href="mail.html">نامه</a></li>
+                                <li class="btn-cta"><a href="{% url 'logout' %}"><span>خروج</span></a></li>
                                 <!--<li class="has-dropdown">
                                     <a href="blog.html">Blog</a>
                                     <ul class="dropdown">
