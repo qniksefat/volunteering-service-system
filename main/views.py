@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from main.decorators import charity_required, volunteer_required
 from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreationForm, PaymentCreationForm, \
     SkillCreationForm
-from main.models import Project, VolunteerHasSkill, Charity
+from main.models import Project, VolunteerHasSkill, Charity, Volunteer
 
 
 class MyLoginView(LoginView):
@@ -101,3 +101,8 @@ def volunteer_page(request):
 def charity_list(request):
     objects = Charity.objects.all()
     return render(request, 'charity_list.html', {'charities': objects})
+
+
+def volunteer_list(request):
+    objects = Volunteer.objects.all()
+    return render(request, 'volunteer_list.html', {'volunteers': objects})
