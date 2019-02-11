@@ -1,6 +1,82 @@
 {% extends 'vbase.html' %}
 
 {% block body %}
+    <nav class="fh5co-nav" role="navigation">
+            <div class="top-menu">
+                <div class="container">
+                    <div class="row">
+                        <div style="float: right" class="col-xs-2">
+                            <div id="fh5co-logo"><a href="{% url 'home' %}">کاربر خوش آمدید<span>.</span></a></div>
+                        </div>
+                        <div  class="col-xs-10 text-right menu-1">
+                            <ul style="float: left">
+                                <li class="btn-cta"><a href="index.html"><span>خروج</span></a></li>
+                                <li class="active"><a href="{% url 'home' %}">پروفایل</a></li>
+                                <li><a href="organizations_list.html">موسسات</a></li>
+                                <li><a href="{% url 'projects' %}">پروژه ها</a></li>
+                                <li><a href="mail.html">نامه</a></li>
+                                <!--<li class="has-dropdown">
+                                    <a href="blog.html">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Web Design</a></li>
+                                        <li><a href="#">eCommerce</a></li>
+                                        <li><a href="#">Branding</a></li>
+                                        <li><a href="#">API</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li class="btn-cta"><a href="#"><span>Login</span></a></li>
+                                <li class="btn-cta"><a href="#"><span>Sign Up</span></a></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>  <!-- navigator -->
 
+    <div id="fh5co-practice" class="fh5co-bg-section">
+        <div class="container">
+            <h1>افزودن مهارت</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.errors }}
+                مهارت:
+                {{ form.title }}
+                <br>
+                <br>
+                سطح:
+                {{ form.level }}
+                <br>
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg">افزودن</button>
+            </form>
+        </div>
+    </div>  <!-- add skill -->
+
+    <div id="fh5co-counter" class="fh5co-counters">
+        <div class="fh5co-heading text-center">
+            <h2>مهارت های تایید شده</h2>
+        </div>
+        <div class="container">
+            <table id="myTable">
+                <tr class="header">
+                    <th style="width:20%;">مهارت</th>
+                    <th style="width:70%; text-align: center;">سطح</th>
+                    <th style="width:10%;"></th>
+                </tr>
+                {% for skill in skills %}
+                    <tr>
+                        <td>{{ skill.skill.title }}</td>
+                        <td style="text-align: center">{{ skill.level }}</td>
+                        <!-- TODO: remove skill -->
+                        <td><button type="submit" class="btn">حذف</button></td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+            <br>
+        </div>
+    </div>  <!-- skills -->
 
 {% endblock %}

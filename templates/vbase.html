@@ -42,18 +42,13 @@
         <!-- remove skill -->
          <script>
             function remove_skill(){
-                // TODO : remove skill from database and proper message
-                new jBox('Notice', {content: 'skill removed' , color: 'black', attributes: {y: 'bottom'}})
+                new jBox('Notice', {content: 'مهارت حذف شد' , color: 'black', attributes: {y: 'bottom'}})
             }
         </script>
-        <!-- add skill -->
+        <!-- add skill message -->
          <script>
             function add_skill(){
-                var skill, description;
-                skill = document.getElementById("input_skill");
-                description = document.getElementById("input_description");
-                // TODO : add skill to database
-                new jBox('Notice', {content: 'skill: "' + skill.value + '" added to your list of skills' + '<br> with description: "' + description.value + '"', color: 'black', attributes: {y: 'bottom'}})
+                new jBox('Notice', {content: 'مهارت اضافه شد' , color: 'black', attributes: {y: 'bottom'}})
             }
         </script>
         <!-- send_request -->
