@@ -1,6 +1,7 @@
 from django.conf import settings
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
@@ -10,9 +11,23 @@ from main.forms import CharityCreationForm, VolunteerCreationForm, ProjectCreati
     SkillCreationForm
 from main.models import Project, VolunteerHasSkill, Charity, Volunteer, Opportunity
 
+#
+# class MyLoginView(LoginView):
+#     template_name = 'login.html'
 
-class MyLoginView(LoginView):
-    template_name = 'login.html'
+
+def my_login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get("username", "")
+        password = request.POST.get("password", "")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return render(request, 'home.html')
+        else:
+            return render(request, 'login.html', {'error_message': '''نام کاربری یا رمزعبور اشتباه است!'''})
+    elif request.method == 'GET':
+        return render(request, 'login.html', {'error_message': ''})
 
 
 class MyLogoutView(LogoutView):

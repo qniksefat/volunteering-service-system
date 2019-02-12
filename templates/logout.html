@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body %}
-    شما خارج شده اید!
-    <a style="float: right" href="{% url 'login' %}">ورود مجدد</a>
+    <br/>
+    <br/>
+    <br/>
+    <div class="card" style="direction: rtl; width:200px;margin:auto">
+        <br/>
+        <h4 style="text-align: center;"class="card-title mb-4 mt-1">شما خارج شده اید!</h4>
+        <br/>
+       <a style="float: left;margin: auto" href= "{% url 'login' %}" class="float-left btn btn-outline-primary">ورود مجدد</a>
+        <br/>
+    </div>
 {% endblock %}

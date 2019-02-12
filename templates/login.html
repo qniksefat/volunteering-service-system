@@ -8,18 +8,19 @@
         <a style="float: left;margin: auto" href= "{% url 'charity_signup' %}" class="float-left btn btn-outline-primary">ثبت نام موسسه</a>
         <a style="float: left;margin: auto" href="{% url 'volunteer_signup' %}" class="float-left btn btn-outline-primary">ثبت نام نیکوکار</a>
     <h4 style="float: right;"class="card-title mb-4 mt-1">ورود</h4>
-         <form>
+        <form method="POST">
+            {% csrf_token %}
         <div class="form-group">
             <br/>
             <br/>
             <br/>
-            <label style="float:right;">پست الکترونیکی</label>
-            <input name="" class="form-control" placeholder="Email" type="email">
+            <label style="float:right;">نام کاربری</label>
+            <input name="username" class="form-control" placeholder="نام کاربری" type="text">
         </div> <!-- form-group// -->
         <div class="form-group">
             <a class="float-left" href="#">آیا فراموش کرده اید؟</a>
             <label style="float:right;">رمز عبور</label>
-            <input class="form-control" placeholder="******" type="password">
+            <input name="password" class="form-control" placeholder="******" type="password">
         </div> <!-- form-group// -->
         <div class="form-group">
         <div class="checkbox">
@@ -30,6 +31,7 @@
             <button type="submit" class="btn btn-primary btn-block"> وارد شو  </button>
         </div> <!-- form-group// -->
     </form>
+        <p dir="rtl">{{ error_message }}</p>
     </article>
     </div> <!-- card.// -->
 {% endblock %}
